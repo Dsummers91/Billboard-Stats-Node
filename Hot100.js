@@ -20,6 +20,7 @@ function ParseData() {
 		Artists[artist] = Artists.hasOwnProperty(artist) ? Artists[artist]+1 : 1;
 	});
 	console.log('Top Song is:'+Hot100[0]);
+	// Return Top Song is:Drake Featuring WizKid &amp; Kyla - One Dan
 	console.log('Rihanna has '+Artists['Rihanna']+' songs on the Hot 100');
+	// Return Rihanna has 2 songs on the Hot 10
 }
-
