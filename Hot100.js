@@ -1,26 +1,47 @@
 'use strict'
+
 var request = require('request');
 var cheerio = require('cheerio');
-var $;
+var Artist = require('./artist');
 
+var $;
 request('http://www.billboard.com/charts/hot-100', function(err, resp, body) {
 	$ = cheerio.load(body);
 	ParseData();
-})
+});
 
-
+var Hot100 = Array();
 var Artists = {};
-var Hot100 = [];
 function ParseData() {
 	$('.chart-row__artist').each(function() {
 		let that = $(this);
 		let artist = that.html().trim();
 		let song =  that.prev().html().trim();
-		Hot100.push(artist+' - '+song);
-		Artists[artist] = Artists.hasOwnProperty(artist) ? Artists[artist]+1 : 1;
+		if(!Artists.hasOwnProperty(artist)) Artists[artist] = new Artist(artist);
+		Artists[artist].songs.push(song);
+		Hot100.push(artist+'-'+song);
 	});
-	console.log('Top Song is:'+Hot100[0]);
-	// Return Top Song is:Drake Featuring WizKid &amp; Kyla - One Dan
-	console.log('Rihanna has '+Artists['Rihanna']+' songs on the Hot 100');
-	// Return Rihanna has 2 songs on the Hot 10
+
+console.log(Artists['Rihanna']);
+// Artist {
+//   name: 'Rihanna',
+//   genre: 'HipHop',
+//   songs: [ 'Needed Me', 'Kiss It Better' ] }	
+
+console.log(Artists['Drake'].songs);
+// [ 'Controlla',
+//   'Hype',
+//   'Still Here',
+//   'Childs Play',
+//   '9',
+//   'Feel No Ways',
+//   'U With Me?',
+//   'Fire &amp; Desire',
+//   'Redemption',
+//   'Weston Road Flows',
+//   'Keep The Family Close' ]
+
+
+console.log(Hot100[0]); // #1 Position
+// Drake Featuring WizKid &amp; Kyla-One Dance
 }
