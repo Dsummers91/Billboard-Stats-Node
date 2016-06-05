@@ -14,9 +14,9 @@ var Hot100 = Array();
 var Artists = {};
 function ParseData() {
 	$('.chart-row__artist').each(function() {
-		let that = $(this);
-		let artist = that.html().trim();
-		let song =  that.prev().html().trim();
+		let self = $(this);
+		let artist = self.html().trim();
+		let song =  self.prev().html().trim();
 		if(!Artists.hasOwnProperty(artist)) Artists[artist] = new Artist(artist);
 		Artists[artist].songs.push(song);
 		Hot100.push(artist+'-'+song);
