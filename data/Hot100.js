@@ -11,7 +11,7 @@ function list(date) {
 		date = date ? new Date(date) : new Date();
 		var y = date.getFullYear();
 		var m = date.getUTCMonth()+1;
-		var d = date.billboardUpdateDay();
+		var d = date.getBillboardUpdateDay();
 		if(m < 10) {m = '0'+m};
 		if(d < 10) {d = '0'+d};
 		request('http://www.billboard.com/charts/hot-100/'+y+'-'+m+'-'+d, function(err, resp, body) {
@@ -27,7 +27,7 @@ function list(date) {
 });
 }
 
-Date.prototype.billboardUpdateDay = function() {
+Date.prototype.getBillboardUpdateDay = function() {
 	while(this.getUTCDay()!==6) {
 		this.setUTCDate(this.getUTCDate() + 1);
 	}
