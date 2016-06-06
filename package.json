@@ -4,7 +4,7 @@
   "description": "BillBoard Data getter",
   "main": "Hot100.js",
   "scripts": {
-    "test": "npm test"
+    "test": "jasmine"
   },
   "author": "De'on Summers",
   "license": "ISC",
@@ -13,6 +13,7 @@
     "require": "^2.4.20"
   },
   "devDependencies": {
-    "jasmine": "^2.4.1"
+    "jasmine": "^2.4.1",
+    "jasmine-promises": "^0.4.1"
   }
 }
